@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -119,43 +120,47 @@ public class Fragment3 extends Fragment {
                     warning.setVisibility(View.VISIBLE);
                     warning.setText("!Fill All Fields!");
                 }else{
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        warning.setVisibility(View.GONE);
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(getContext(), "signin ok", Toast.LENGTH_SHORT).show();
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        String uid = user.getUid();
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    warning.setVisibility(View.GONE);
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Toast.makeText(getContext(), "Signin successful", Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String uid = user.getUid();
 
-                                        UserInfo userInfo = new UserInfo(email,password,phone,name);
+                                    UserInfo userInfo = new UserInfo(email, password, phone, name);
 
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference myRef = database.getReference("users").child(uid);
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference myRef = database.getReference("users").child(uid);
 
-                                        myRef.setValue(userInfo);
+                                    myRef.setValue(userInfo);
 
-                                        Bundle nameBundle = new Bundle();
-                                        nameBundle.putString("name", name);
-                                        nameBundle.putString("uid", uid);
-                                        Navigation.findNavController(view).navigate(R.id.action_fragment3_to_fragment2, nameBundle);
-                                    } else {
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-
+                                    Bundle nameBundle = new Bundle();
+                                    nameBundle.putString("name", name);
+                                    nameBundle.putString("uid", uid);
+                                    Navigation.findNavController(view).navigate(R.id.action_fragment3_to_fragment2, nameBundle);
+                                } else {
+                                    Exception exception = task.getException();
+                                    if (exception instanceof FirebaseAuthUserCollisionException) {
+                                        Log.w(TAG, "createUserWithEmailAndPassword:failure - Email already exists", exception);
                                         warning.setVisibility(View.VISIBLE);
-                                        warning.setText("Make Sure To Fill The Field Correctly");
-
+                                        warning.setText("Email already exists. Please use a different email.");
+                                    } else {
+                                        Log.w(TAG, "createUserWithEmailAndPassword:failure", exception);
+                                        warning.setVisibility(View.VISIBLE);
+                                        warning.setText("Make sure to fill the fields correctly.");
                                     }
                                 }
-                            });
+                            }
+                        });
 
 //
-                    }
-
-
                 }
+
+
+            }
 
 
 
