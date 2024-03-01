@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".fragments_and_dialog.Fragment2">
+
+    <Button
+        android:id="@+id/addItemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/add_item_button"
+        android:text="add"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/emptyListText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#FFFFFF"
+        android:fontFamily="@font/alegreya"
+        android:gravity="center"
+        android:text="Press the ADD button to add an item to your shpping list"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shoppingList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF" />
+</LinearLayout>

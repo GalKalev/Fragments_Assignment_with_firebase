@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment1">
+
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.example.fragmentassignment.fragments_and_dialog.Fragment1"
+        android:label="fragment_1"
+        tools:layout="@layout/fragment_1" >
+        <action
+            android:id="@+id/action_fragment1_to_fragment4"
+            app:destination="@id/fragment4" />
+        <action
+            android:id="@+id/action_fragment1_to_fragment3"
+            app:destination="@id/fragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.fragmentassignment.fragments_and_dialog.Fragment2"
+        android:label="fragment_2"
+        tools:layout="@layout/fragment_2" />
+    <fragment
+        android:id="@+id/fragment4"
+        android:name="com.example.fragmentassignment.fragments_and_dialog.Fragment4"
+        android:label="Fragment4" >
+        <action
+            android:id="@+id/action_fragment4_to_fragment2"
+            app:destination="@id/fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.fragmentassignment.fragments_and_dialog.Fragment3"
+        android:label="fragment_4"
+        tools:layout="@layout/fragment_4" >
+        <action
+            android:id="@+id/action_fragment3_to_fragment2"
+            app:destination="@id/fragment2" />
+    </fragment>
+    <dialog
+        android:id="@+id/addItemDialog"
+        android:name="com.example.fragmentassignment.fragments_and_dialog.AddItemDialog"
+        android:label="AddItemDialog" >
+        <action
+            android:id="@+id/action_addItemDialog_to_fragment2"
+            app:destination="@id/fragment2" />
+    </dialog>
+    <dialog
+        android:id="@+id/addItemDialog2"
+        android:name="com.example.fragmentassignment.fragments_and_dialog.AddItemDialog2"
+        android:label="AddItemDialog2" >
+        <action
+            android:id="@+id/action_addItemDialog2_to_fragment2"
+            app:destination="@id/fragment2" />
+    </dialog>
+</navigation>

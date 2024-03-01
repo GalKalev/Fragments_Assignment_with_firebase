@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "104192575919",
+    "project_id": "fragmentassignment-b7fc9",
+    "storage_bucket": "fragmentassignment-b7fc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104192575919:android:9df6f2f5c25dc7cf1b075a",
+        "android_client_info": {
+          "package_name": "com.example.fragmentassignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoiO50eGI9kbza1iLejTBzQL9AtGweNoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
