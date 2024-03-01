@@ -144,31 +144,6 @@ public class Fragment2 extends Fragment {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("users").child(uid).child("shoppingList");
 
-
-//        Log.d("ddkandf", "data: " + dataset.toString());
-
-
-//
-        // Adjust the reference path as per your database structure
-
-// Clear existing data in the database node (optional)
-//        myRef.removeValue();
-
-// Iterate over the dataset and add each item to the database
-//        for (ManagerListModel item : dataset) {
-//            // Prepare data to be written to the database
-//            String itemName = item.getItemName();
-//            String itemAmount = item.getItemAmount();
-//            // You may also need to retrieve other item details depending on your model
-//
-//            // Write data to the database under a unique key
-//            String itemId = myRef.push().getKey(); // Generate a unique key for each item
-//            myRef.child(itemId).child("itemName").setValue(itemName);
-//            myRef.child(itemId).child("itemAmount").setValue(itemAmount);
-//            // Write other item details as needed
-//        }
-
-
         if (dataset == null) {
             dataset = new ArrayList<>();
             for (int i = 0; i < ManagerListData.itemNameArray.size(); i++) {
@@ -248,8 +223,7 @@ public class Fragment2 extends Fragment {
     public void updateAdapterWithData(String name, String amount) {
         String itemName = name;
         String itemAmount = amount;
-        // Add the new item to your dataset and notify the adapter
-        // Example:
+
         dataset.add(new ManagerListModel(itemName, itemAmount, ManagerListData._id.size()));
         adapter.notifyItemInserted(dataset.size() - 1);
     }
@@ -265,23 +239,20 @@ public class Fragment2 extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             if (task.isSuccessful()) {
-                                // Iterate over the dataset and add each item to the database
+
                                 for (ManagerListModel item : dataset) {
-                                    // Prepare data to be written to the database
+
                                     String itemName = item.getItemName();
                                     String itemAmount = item.getItemAmount();
-                                    // You may also need to retrieve other item details depending on your model
 
-                                    // Write data to the database under a unique key
-//                                String itemId = itemName + "-" + myRef.push().getKey(); // Generate a unique key for each item
-                                    String itemId = String.valueOf(dataset.indexOf(item)); // Generate a unique key for each item
+
+                                    String itemId = String.valueOf(dataset.indexOf(item));
                                     myRef.child(itemId).child("itemName").setValue(itemName);
                                     myRef.child(itemId).child("itemAmount").setValue(itemAmount);
-                                    // Write other item details as needed
                                 }
                             }
 
-                            // Display a message or handle completion as required
+
                         } else {
                             // Handle error
                             Log.e("Firebase", "Failed to clear data: " + task.getException().getMessage());

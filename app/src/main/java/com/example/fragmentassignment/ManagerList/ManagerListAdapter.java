@@ -101,17 +101,12 @@ public class ManagerListAdapter extends RecyclerView.Adapter<ManagerListAdapter.
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dataset.remove(position);
-//
-//                notifyDataSetChanged();
-//                updateDatabase();
 
-
-                int currentPosition = holder.getAdapterPosition(); // Get the current item position
-                dataset.remove(currentPosition); // Remove the item at the current position
-                notifyItemRemoved(currentPosition); // Notify adapter of item removal
-                notifyItemRangeChanged(currentPosition, dataset.size()); // Notify adapter of data set change
-                updateDatabase(); // Update the database
+                int currentPosition = holder.getAdapterPosition();
+                dataset.remove(currentPosition);
+                notifyItemRemoved(currentPosition);
+                notifyItemRangeChanged(currentPosition, dataset.size());
+                updateDatabase();
             }
         });
 
@@ -126,28 +121,11 @@ public class ManagerListAdapter extends RecyclerView.Adapter<ManagerListAdapter.
 
 
     public void updateAdapterWithData(String name, String amount, int position) {
-        // Add the new item to your dataset and notify the adapter
+
        dataset.get(position).setItemName(name);
        dataset.get(position).setItemAmount(amount);
-//        updateDatabase();
         notifyDataSetChanged();
     }
-
-//    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-//        TextView itemName;
-//        TextView itemAmount;
-//        public ViewHolder(@NonNull View itemView){
-//            super(itemView);
-//            itemName = itemView.findViewById(R.id.itemName);
-//            itemAmount = itemView.findViewById(R.id.itemAmount);
-//            itemView.setOnClickListener(this);
-//        }
-//        @Override
-//        public void onClick(View v) {
-//            Toast.makeText(v.getContext(), "pos" + dataset.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-//
-//        }
-//    }
 
     public void updateDatabase(){
 
@@ -165,17 +143,11 @@ public class ManagerListAdapter extends RecyclerView.Adapter<ManagerListAdapter.
                                 // Prepare data to be written to the database
                                 String itemName = item.getItemName();
                                 String itemAmount = item.getItemAmount();
-                                // You may also need to retrieve other item details depending on your model
-
-                                // Write data to the database under a unique key
-//                                String itemId = itemName + "-" + myRef.push().getKey(); // Generate a unique key for each item
                                 String itemId = String.valueOf(dataset.indexOf(item)); // Generate a unique key for each item
                                 myRef.child(itemId).child("itemName").setValue(itemName);
                                 myRef.child(itemId).child("itemAmount").setValue(itemAmount);
                                 // Write other item details as needed
                             }
-
-                            // Display a message or handle completion as required
                         } else {
                             // Handle error
                             Log.e("Firebase", "Failed to clear data: " + task.getException().getMessage());

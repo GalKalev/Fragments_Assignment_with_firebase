@@ -9,8 +9,6 @@ import java.util.Map;
 public class UserInfo {
     private static Map<String, Map.Entry<String,String>> usersInfo = new HashMap<>();
 
-//    private static int idCounter = 0;
-//    private int _id;
     private String userEmail;
     private String userPassword;
     private String userPhone;
@@ -25,12 +23,10 @@ public class UserInfo {
         this.userPassword = userPassword;
         this.userPhone = userPhone;
         this.userName = userName;
-//        this._id = idCounter++;
+
     }
 
-//    public int get_id() {
-//        return _id;
-//    }
+
 
     public String getUserName() {
         return userName;
@@ -44,24 +40,6 @@ public class UserInfo {
         return userEmail;
     }
 
-    public boolean checkUserOnSignIn(){
-        for(Map.Entry<String, Map.Entry<String,String>> entry : usersInfo.entrySet()){
-            if(userEmail.equals(entry.getKey())){
-                return false;
-            }
-        }
-        usersInfo.put(userEmail, new AbstractMap.SimpleEntry<>(userPassword, userPhone));
-        return true;
-    }
-
-    public boolean checkUserOnLogIn(){
-        for(Map.Entry<String, Map.Entry<String,String>> entry : usersInfo.entrySet()){
-            if(userEmail.equals(entry.getKey()) && userPassword.equals(entry.getValue().getKey())){
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public String toString() {
@@ -81,13 +59,4 @@ public class UserInfo {
         return userPhone;
     }
 
-    public void printingAllUsersInfo(){
-        for(Map.Entry<String, Map.Entry<String,String>> entry : usersInfo.entrySet()){
-            Log.d("printing Info","username: " + entry.getKey());
-            Log.d("printing Info","password: " + entry.getValue().getKey());
-            Log.d("printing Info","phone: " + entry.getValue().getValue());
-
-        }
-        Log.d("printing Info","_________________________________________");
-    }
 }

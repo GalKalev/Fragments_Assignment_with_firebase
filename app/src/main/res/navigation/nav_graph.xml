@@ -47,12 +47,4 @@
             android:id="@+id/action_addItemDialog_to_fragment2"
             app:destination="@id/fragment2" />
     </dialog>
-    <dialog
-        android:id="@+id/addItemDialog2"
-        android:name="com.example.fragmentassignment.fragments_and_dialog.AddItemDialog2"
-        android:label="AddItemDialog2" >
-        <action
-            android:id="@+id/action_addItemDialog2_to_fragment2"
-            app:destination="@id/fragment2" />
-    </dialog>
 </navigation>

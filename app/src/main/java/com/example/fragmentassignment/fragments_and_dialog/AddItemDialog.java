@@ -118,17 +118,6 @@ public class AddItemDialog {
         spinner.setAdapter(measurementListSpinnerAdapter);
     }
 
-    private void setupConfirmButton() {
-
-        confirmAddedItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment2.updateAdapterWithData(getEnterItemName().getText().toString(),
-                        getEnterItemAmount().getText().toString() + " " + getSpinner().getSelectedItem().toString());
-                dismiss();
-            }
-        });
-    }
 
 
     public EditText getEnterItemName() {

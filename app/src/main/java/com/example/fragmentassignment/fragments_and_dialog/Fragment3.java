@@ -84,7 +84,6 @@ public class Fragment3 extends Fragment {
 
 
         // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
         Log.d(TAG, "enter frg");
         View view = inflater.inflate(R.layout.fragment_3, container, false);
 
@@ -133,11 +132,9 @@ public class Fragment3 extends Fragment {
 
                                         UserInfo userInfo = new UserInfo(email,password,phone,name);
 
-//                                    Log.d(TAG, userInfo.toString());
-
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference myRef = database.getReference("users").child(uid);
-//
+
                                         myRef.setValue(userInfo);
 
                                         Bundle nameBundle = new Bundle();
@@ -146,7 +143,7 @@ public class Fragment3 extends Fragment {
                                         Navigation.findNavController(view).navigate(R.id.action_fragment3_to_fragment2, nameBundle);
                                     } else {
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-//
+
                                         warning.setVisibility(View.VISIBLE);
                                         warning.setText("Make Sure To Fill The Field Correctly");
 
